@@ -9,6 +9,7 @@ import Offline from "./offline/offline.jsx";
 
 import useNetwork from './offline/useNetwork';
 import Betatester from "./components/betatesterform.jsx";
+import Share from "./components/share.jsx";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Login network={networkState.online}/>}/>
       <Route path='/home' element={<Paddy network={networkState.online}/>}/>
+      <Route path='/share' element={<Share network={networkState.online}/>}/>
       <Route path='/signup' element={<Signup network={networkState.online}/>}/>
       <Route path='/offline' element={<Offline network={networkState.online}/>} />
       <Route path='/signupasbetatester' element={<Betatester network={networkState.online}/>} />

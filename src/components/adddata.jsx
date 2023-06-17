@@ -24,7 +24,6 @@ function AddData({user, getAllNotes, notes}) {
         Option = notes.map(e=> e[1].category);
         dispatch(allCategory(Option.filter(unique)))
     }, [notes])
-    //console.log(Option);
     const addData =async ()=>{
         if(document.getElementById('standard-multiline-static').value !== '' && document.getElementById('collection').value !== ''){
             const addNew = await addDoc(collection(db, "notepad"), {

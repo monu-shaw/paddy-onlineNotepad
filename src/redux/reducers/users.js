@@ -1,6 +1,9 @@
 const {createSlice} = require('@reduxjs/toolkit')
-
-
+let n ='', s=false;
+if(localStorage.getItem("user")){
+    n=localStorage.getItem("user");
+    s=true;
+}
 /* const STATUS = Object.freeze({
     IDLE: 'idle',
     ERROR: 'error',
@@ -12,18 +15,19 @@ const userSlice = createSlice({
     name: 'user',
     initialState:{
         data: [],
-        status: false,
-        user: '',
+        status: s,
+        user: n,
         category:[],
     },
     reducers:{
         logIN(state, action){
             state.status= true;
             state.user = action.payload[0];
-            //console.log(action.payload[0])
+            localStorage.setItem("user",action.payload[0])
         },
         logOut(state, action){
             state.status = false;
+            localStorage.removeItem("user")
         },
         allCategory(state, action){
             state.category= action.payload;
