@@ -37,7 +37,8 @@ useEffect(()=>{
 useEffect(() => {
     var parsedUrl = new URL(window.location.toString());
     if(loggedStatus){
-        setData({text: `${parsedUrl.searchParams.get('description')}  - ${parsedUrl.searchParams.get('link')}`})    
+        //setData({text: `${parsedUrl.searchParams.get('description')}  - ${parsedUrl.searchParams.get('link')}`}) 
+
     }else{
         setError(true);
         setLoading(false);
@@ -63,7 +64,9 @@ if(error){
 }
 
 return (
-    <div>Share</div>
+    <div>
+{(parsedUrl)}
+    </div>
 )
 }
 

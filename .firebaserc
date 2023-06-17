@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "ourpaddy"
+  },
+  "targets": {
+    "paddy-1cdf5": {
+      "hosting": {
+        "app": [
+          "ourpaddy"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

@@ -1,4 +1,4 @@
-import {  List, ListItem, ListItemText } from '@mui/material';
+import {  Button, List, ListItem, ListItemText } from '@mui/material';
 //import IconButton from '@mui/material/IconButton'
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import React, {useEffect, useState} from 'react'
@@ -31,8 +31,8 @@ function Paddy({network}) {
       }
     },[loggedStatus,network]);
   return (
-    <div >
-        <List className='overflow-auto pb-4' style={{marginBottom: '75px', maxHeight: '75vh'}}>
+    <div className='position-relative'>
+        <List className='overflow-auto pb-4'>
         {notes.map((e)=>
             <ListItem key={e[0]}
             secondaryAction={
@@ -47,7 +47,10 @@ function Paddy({network}) {
           </ListItem>
         )}
         </List>
-        <AddData user={user} notes={notes} getAllNotes={getAllNotes}/>
+        {/* <AddData user={user} notes={notes} getAllNotes={getAllNotes}/> */}
+        <Button className='rounded-circle position-absolute bottom end-0 m-2' color='primary'>
+          <i className="bi bi-plus-lg"></i>
+        </Button>
     </div>
   )
 }
