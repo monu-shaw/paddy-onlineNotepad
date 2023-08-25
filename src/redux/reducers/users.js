@@ -18,6 +18,7 @@ const userSlice = createSlice({
         status: s,
         user: n,
         category:[],
+        addModal:false
     },
     reducers:{
         logIN(state, action){
@@ -31,6 +32,9 @@ const userSlice = createSlice({
         },
         allCategory(state, action){
             state.category= action.payload;
+        },
+        setModal(state,action){
+            state.addModal=!state.addModal;
         }
     
 },
@@ -49,7 +53,7 @@ const userSlice = createSlice({
 }, */
 });
 
-export const { logIN, logOut, allCategory} = userSlice.actions;
+export const { logIN, logOut, allCategory,setModal} = userSlice.actions;
 export default userSlice.reducer;
 
 /* export const fetchUsers = createAsyncThunk('users/fetch', async () => {

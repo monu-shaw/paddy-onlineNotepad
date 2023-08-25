@@ -1,4 +1,4 @@
-import { Button, Container, TextField } from '@mui/material'
+import { Button, Container, MenuItem, Select, TextField } from '@mui/material'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import React, {useEffect, useState} from 'react'
 import db from '../firbase'
@@ -7,6 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import{useDispatch, useSelector}from 'react-redux'
 import { allCategory } from '../redux/reducers/users';
+
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 let Option=[]
 function AddData({user, getAllNotes, notes}) {
@@ -48,8 +51,8 @@ function AddData({user, getAllNotes, notes}) {
     <>
            
     <ToastContainer position="top-right" />
-        <Container fixed className='mx-auto fixed-bottom my-1 col-11'>
-            <TextField
+        <Container fixed className='mx-auto my-1 col-12'>
+            {/* <TextField
               className='col-12'
               id="standard-multiline-static"
               label="Data"
@@ -57,13 +60,26 @@ function AddData({user, getAllNotes, notes}) {
               rows={3}
               variant="standard"
               onChange={e=>setData({...data, data: e.target.value})}
-            />
-            <input className='form-control mt-1' list="opyions" defaultValue="default" id="collection" onChange={e=>setData({...data, collection: e.target.value})}/>  
+            /> */}
+            <ReactQuill value={data.data} theme='snow' onChange={e=>console.log(e)} />
+            {/* <input className='form-control mt-1' list="opyions" defaultValue="default" id="collection" onChange={e=>setData({...data, collection: e.target.value})}/>  
             <datalist id="opyions">
             {Category.map((e,index)=>
                 <option key={index} value={e} />
                 )}
-            </datalist>
+            </datalist> */}
+              <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={data.collection}
+                  label="Age"
+                  fullWidth
+                  onChange={e=>setData({...data, collection: e.target.value})}
+              >
+                {Category.map((e,index)=>
+                  <MenuItem key={index} value={e}>{e}</MenuItem>
+                )}
+              </Select>
             <Button className="my-1 col-12" onClick={addData} color="success" variant="outlined">Save</Button>
         </Container>
     </>

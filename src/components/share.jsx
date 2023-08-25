@@ -65,7 +65,7 @@ if(error){
 
 return (
     <div>
-{(parsedUrl)}
+{ new URL(window.location.toString())}
     </div>
 )
 }
