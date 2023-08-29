@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "target": "app", 
+    "target":"ourpaddy",
     "public": "build",
     "ignore": [
       "firebase.json",

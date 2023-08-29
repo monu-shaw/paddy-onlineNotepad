@@ -2,11 +2,14 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import { Link, useLocation } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import { useSelector, useDispatch } from 'react-redux';
-import { logOut } from '../redux/reducers/users';
+import { logOut,setModal } from '../redux/reducers/users';
 import React, { useEffect, useState } from 'react';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function Navbar() {
   const logStatus = useSelector((state) => state.user.status);
@@ -28,9 +31,15 @@ export default function Navbar() {
             PADDY.IO
           </Typography>
           {logStatus === true ? (
+            <ButtonGroup variant="text" aria-label="text button group">
             <Button color="inherit" onClick={() => dispatch(logOut())}>
-              Logout
+              <ExitToAppIcon/>
             </Button>
+            <Button color="inherit" onClick={() => dispatch(setModal())}>
+              <AddIcon />
+            </Button>
+          </ButtonGroup>
+            
           ) : (
             <Button color="inherit">
               <Link

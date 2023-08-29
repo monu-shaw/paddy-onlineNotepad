@@ -52,6 +52,7 @@ export default function Login({ network }) {
           id="outlined-basic"
           label="Enter Only UserName"
           variant="outlined"
+          onKeyDown={e=>e.code==="Enter"&&LogIn()}
         />
         <Button className="my-1 col-12" variant="outlined" onClick={LogIn}>
           Let's Go

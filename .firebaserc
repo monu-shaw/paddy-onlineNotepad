@@ -1,11 +1,12 @@
 {
   "projects": {
-    "default": "ourpaddy"
+    "default": "paddy-1cdf5",
+    "app": "paddy-1cdf5"
   },
   "targets": {
     "paddy-1cdf5": {
       "hosting": {
-        "app": [
+        "ourpaddy": [
           "ourpaddy"
         ]
       }

@@ -1,9 +1,10 @@
 {
   "short_name": "OurPaddy",
-  "name": "Online NotePad",
+  "name": "OurPaddy",
+  "description":"A ultimate online notepad which every developer deserve",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "https://img.icons8.com/fluency/96/notepad.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },

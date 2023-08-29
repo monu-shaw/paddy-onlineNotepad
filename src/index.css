@@ -18,3 +18,7 @@ code {
 .nunito{
   font-family: 'Nunito', sans-serif;
 }
+
+.ql-editor {
+  min-height: 18em;
+}

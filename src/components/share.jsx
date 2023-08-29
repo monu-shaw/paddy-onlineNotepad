@@ -37,7 +37,8 @@ useEffect(()=>{
 useEffect(() => {
     var parsedUrl = new URL(window.location.toString());
     if(loggedStatus){
-        //setData({text: `${parsedUrl.searchParams.get('description')}  - ${parsedUrl.searchParams.get('link')}`}) 
+        setLoading(false)
+        setData({text: `${parsedUrl.searchParams.get('title')} - <a href="${parsedUrl.searchParams.get('text')}" target="_blank">${parsedUrl.searchParams.get('text')}</a>  - ${parsedUrl.searchParams.get('url')}`}) 
 
     }else{
         setError(true);
@@ -53,7 +54,8 @@ if(error){
         <Card>
             <CardContent>
                 <Typography variant='h4' component={'div'} className='text-center'>
-                    Some Error Occured
+                    {window.location.toString()}
+                    {JSON.stringify(data)}
                 </Typography>
             </CardContent>
             <CardActions>
@@ -64,9 +66,16 @@ if(error){
 }
 
 return (
-    <div>
-{ new URL(window.location.toString())}
-    </div>
+    <Card>
+            <CardContent>
+                <Typography variant='h4' component={'div'} className='text-center'>
+                    {window.location.toString()}
+                </Typography>
+            </CardContent>
+            <CardActions>
+                <Button size="small" onClick={()=>navigate('/')}>Retry</Button>
+            </CardActions>
+        </Card>
 )
 }
 
