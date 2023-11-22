@@ -51,8 +51,6 @@ const AddData = forwardRef(function({ user, getAllNotes, notes,postFunction },re
 
   return (
     <>
-
-      <ToastContainer position="top-right"/>
       <Container fixed className='mx-auto my-1 col-12'>
         <div style={{ minHeight: '200px' }} className='my-2'>
           <ReactQuill
@@ -62,8 +60,10 @@ const AddData = forwardRef(function({ user, getAllNotes, notes,postFunction },re
         <Autocomplete
           freeSolo
           placeholder="Type anything"
+          autoSelect
+          value={data.collection}
           options={Category.map((option) => option)}
-          onChange={(e,v)=>setData(i=>({...i, collection: v}))}
+          onChange={(e,v)=>{setData(i=>({...i, collection: v})); console.log(e,v)}}
           renderInput={(params) => <TextField {...params} label="Collection" />}
         />
         <Button className="my-1 col-12 opacity-0" style={{minHeight:'1px'}}  onClick={addData} ref={ref} color="success" variant="outlined">Save</Button>

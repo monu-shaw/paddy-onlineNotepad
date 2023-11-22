@@ -22,3 +22,7 @@ code {
 .ql-editor {
   min-height: 18em;
 }
+
+.cstTab .MuiBox-root {
+  padding: 0px !important;
+}

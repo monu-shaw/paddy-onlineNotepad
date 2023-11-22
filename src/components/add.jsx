@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux'
 import {Link, useNavigate} from 'react-router-dom'
 import { collection, query, where, getDocs,  serverTimestamp, addDoc } from "firebase/firestore";
 import db from '../firbase'
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Signup({network}) {
@@ -44,7 +44,6 @@ function Signup({network}) {
       noValidate
       autoComplete="off"
     >
-      <ToastContainer/>
         <Typography variant="h5" component="h5" align='center'>Add User To Paddy</Typography>
       <TextField className="col-12" id="addPhrase" label="Enter Add Phrase" variant="outlined"/>
       <TextField className="col-12" id="outlined-basic" label="Enter Only UserName" variant="outlined"/>

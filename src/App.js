@@ -11,13 +11,19 @@ import useNetwork from './offline/useNetwork';
 import Betatester from './components/betatesterform.jsx';
 import Share from './components/share.jsx';
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const networkState = useNetwork();
 
   return (
     <BrowserRouter>
-      {networkState.online && <Navbar />}
+      <ToastContainer position="top-right"/>
+      {networkState.online && 
+        <div style={{marginBottom:'64px'}}>
+          <Navbar />
+        </div>
+      }
       <Routes>
         <Route path="/" element={<Login network={networkState.online} />} />
         <Route path="/home" element={<Paddy network={networkState.online} />} />

@@ -17,7 +17,7 @@ export default function Login({ network }) {
   const LogIn = async () => {
     const q = query(
       collection(db, 'users'),
-      where('userName', '==', document.getElementById('outlined-basic').value)
+      where('userName', '==', document.getElementById('outlined-basic').value.toLowerCase())
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.docs.map((e) => e.data()).length !== 0
@@ -26,7 +26,7 @@ export default function Login({ network }) {
   };
   useEffect(() => {
     if (loggedStatus) {
-      navigate('/home');
+      navigate('/home',{replace:true});
     }
     if (!network) {
       navigate('/offline');
