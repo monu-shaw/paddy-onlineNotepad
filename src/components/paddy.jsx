@@ -10,6 +10,7 @@ import AddData from './adddata';
 import Del, { Copy } from './deldata';
 import { setModal } from '../redux/reducers/users'
 import { useSwipeable } from 'react-swipeable';
+import ReactPlayer from 'react-player';
 
 function Paddy({ network }) {
   const { addModal: addNew } = useSelector(i => i.user)
@@ -137,11 +138,16 @@ function Paddy({ network }) {
                         : ''}
                     </ListItem>
                     {e[1].preview ?
+
                       <Collapse in={e[0] + 'tab' === openid} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                          <LinkUI data={e[1].preview} />
+                          <LinkUI data={e[1]?.preview} />
                         </List>
+                        {((e[1]?.category.toUpperCase() === 'VIDEO' || e[1].category.toUpperCase()==='YOUTUBE')&& e[1]?.url)&&(
+                          <ReactPlayer controls={true} url={e[1]?.url} width='100%' />
+                        )}
                       </Collapse>
+
                       : ''}
                   </span>
                 ))}

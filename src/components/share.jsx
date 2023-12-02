@@ -28,6 +28,7 @@ function Share() {
                 username: user, 
                 category: category?category:'shared',
                 preview,
+                url:data?.uri,
                 createdOn: serverTimestamp(),
             });
             if(addNew.id !== ''){
@@ -52,7 +53,7 @@ useEffect(() => {
     var parsedUrl = new URL(window.location.toString());
     if(loggedStatus){
         setLoading(false)
-        setData({text: ` - <a href="${parsedUrl.searchParams.get('text')}" target="_blank">${parsedUrl.searchParams.get('text')}</a>  - ${parsedUrl.searchParams.get('url')?parsedUrl.searchParams.get('url'):''}`}) 
+        setData({text: ` - <a href="${parsedUrl.searchParams.get('text')}" target="_blank">${parsedUrl.searchParams.get('text')}</a>  - ${parsedUrl.searchParams.get('url')?parsedUrl.searchParams.get('url'):''}`,uri:parsedUrl.searchParams.get('text')}) 
         setTitle(parsedUrl.searchParams.get('title')?parsedUrl.searchParams.get('title'):'')
         setCategory('shared')
         axios.post('https://linkview.onrender.com/',{url:parsedUrl.searchParams.get('text')}
