@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { collection, getDocs, orderBy, query, where,addDoc, serverTimestamp  } from 'firebase/firestore';
 import axios from 'axios';
+import { extractAllUrls } from './paddy';
 
 function Share() {
     const [data, setData] = useState({})
@@ -32,10 +33,10 @@ function Share() {
                 createdOn: serverTimestamp(),
             });
             if(addNew.id !== ''){
-                navigate('/')
+                navigate('/',{replace:true})
             }else{
                 alert('failed');
-                navigate('/');
+                navigate('/',{replace:true});
             }
          
     }
@@ -53,7 +54,7 @@ useEffect(() => {
     var parsedUrl = new URL(window.location.toString());
     if(loggedStatus){
         setLoading(false)
-        setData({text: ` - <a href="${parsedUrl.searchParams.get('text')}" target="_blank">${parsedUrl.searchParams.get('text')}</a>  - ${parsedUrl.searchParams.get('url')?parsedUrl.searchParams.get('url'):''}`,uri:parsedUrl.searchParams.get('text')}) 
+        setData({text: ` - <a href="${extractAllUrls(parsedUrl.searchParams.get('text'))}" target="_blank">${parsedUrl.searchParams.get('text')}</a>  - ${parsedUrl.searchParams.get('url')?parsedUrl.searchParams.get('url'):''}`,uri:parsedUrl.searchParams.get('text')}) 
         setTitle(parsedUrl.searchParams.get('title')?parsedUrl.searchParams.get('title'):'')
         setCategory('shared')
         axios.post('https://linkview.onrender.com/',{url:parsedUrl.searchParams.get('text')}

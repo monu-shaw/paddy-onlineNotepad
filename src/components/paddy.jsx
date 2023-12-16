@@ -203,6 +203,9 @@ function CustomTabPanel(props) {
 }
 
 export const LinkUI = ({data}) => {
+  if(!data.title){
+    return null;
+  }
   return (
       <div className='d-flex gap-1 overflow-hidden rounded-2 col-12 col-md-9 col-lg-6 mb-1' style={{backgroundColor:'#fcfcfc'}}>
         <div className=''>
@@ -215,4 +218,16 @@ export const LinkUI = ({data}) => {
       </div>
   );
 };
+export  function extractAllUrls(str) {
+  // Regular expression to match URLs with various protocols and formats
+  const regex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+  const matches = [];
 
+  // Find all URLs using the regular expression
+  for (const match of str.matchAll(regex)) {
+    matches.push(match[0]);
+  }
+
+  // Return all extracted URLs as an array
+  return matches;
+}
