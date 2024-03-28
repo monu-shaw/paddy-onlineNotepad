@@ -57,8 +57,9 @@ useEffect(() => {
         setData({text: ` - <a href="${extractAllUrls(parsedUrl.searchParams.get('text'))}" target="_blank">${parsedUrl.searchParams.get('text')}</a>  - ${parsedUrl.searchParams.get('url')?parsedUrl.searchParams.get('url'):''}`,uri:parsedUrl.searchParams.get('text')}) 
         setTitle(parsedUrl.searchParams.get('title')?parsedUrl.searchParams.get('title'):'')
         setCategory('shared')
-        axios.post('https://linkview.onrender.com/',{url:parsedUrl.searchParams.get('text')}
-        ).then(r=>{
+        axios.get('https://ourinshort.netlify.app/.netlify/functions/seo?url='+parsedUrl.searchParams.get('text'))
+        .then(r=>{
+            console.log(r);
             setPreview({
                 "img": r?.data?.data?.img?r?.data?.data?.img:null,
                 "title": r?.data?.data?.title?r?.data?.data?.title:null,

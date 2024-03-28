@@ -19,6 +19,7 @@ function App() {
   return (
     <BrowserRouter>
       <ToastContainer position="top-right"/>
+      
       {networkState.online && 
         <div style={{marginBottom:'64px'}}>
           <Navbar />

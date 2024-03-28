@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, List, ListItem, ListItemText, Tab, Tabs, Skeleton, ListSubheader, Collapse } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, List, ListItem, ListItemText, Tab, Tabs, Skeleton, ListSubheader, Collapse, CardContent, Card, Typography, CardHeader, CardMedia, Avatar, CardActions, IconButton } from '@mui/material';
 //import IconButton from '@mui/material/IconButton'
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import React, { useEffect, useRef, useState } from 'react'
@@ -124,18 +124,40 @@ function Paddy({ network }) {
                 {hashCatlist[i].map((e, pIndex) => (
                   <span key={e[0]}>
                     <ListItem key={e[0] + 't'}
-                      secondaryAction={
-                        <Del id={e[0]} getAllNotes={getAllNotes} />
+                      secondaryAction={ null
+                       // <Del id={e[0]} getAllNotes={getAllNotes} />
                       }
                     >
-
-                      <Copy data={e[1].data} />
-                      <ListItemText className='text-break'
-                        primary={<div dangerouslySetInnerHTML={{ __html: e[1].data }} />}
-                      />
-                      {e[1].preview ?
-                        <p className='ps-1' onClick={() => setopenId(i => i === -1 ? e[0] + 'tab' : -1)}>{'>'}</p>
-                        : ''}
+                         <Card sx={{ width: '100%',boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.12)' }} >
+                            {e[1]?.preview?.title &&
+                              <CardHeader
+                                avatar={
+                                  !(e[1]?.category.toUpperCase() === 'VIDEO' || e[1].category.toUpperCase()==='YOUTUBE' || e[1].data.includes("youtu") )&&
+                                  <Avatar aria-label="recipe" variant='rounded'  sx={{ width: 56, height: 56 }}>
+                                    <img width={80} height={80} src={e[1]?.preview?.img}/>
+                                  </Avatar>
+                                }
+                                title={e[1]?.preview?.title}
+                                subheader={(e[1]?.preview?.description?e[1]?.preview?.description:'').substring(0,50)}
+                              />
+                            }
+                          <CardMedia>
+                            {(e[1]?.category.toUpperCase() === 'VIDEO' || e[1].category.toUpperCase()==='YOUTUBE' || e[1].data.includes("youtu") )&&(
+                              <ReactPlayer controls={true} url={e[1]?.url} width='100%' style={{maxHeight:'28vh'}} />
+                            )}
+                          </CardMedia>
+                          <CardContent>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                              <div dangerouslySetInnerHTML={{ __html: e[1].data }} />
+                            </Typography>
+                            </CardContent>
+                            <CardActions>
+                                  <Copy data={e[1].data} />
+                                  <Del id={e[0]} getAllNotes={getAllNotes} />
+                              </CardActions>
+                          </Card>
+                      
+                      
                     </ListItem>
                     {e[1].preview ?
 
@@ -143,12 +165,17 @@ function Paddy({ network }) {
                         <List component="div" disablePadding>
                           <LinkUI data={e[1]?.preview} />
                         </List>
-                        {((e[1]?.category.toUpperCase() === 'VIDEO' || e[1].category.toUpperCase()==='YOUTUBE')&& e[1]?.url)&&(
+                        {((e[1]?.category.toUpperCase() === 'VIDEO' || e[1].category.toUpperCase()==='YOUTUBE' || e[1].category.toUpperCase()==='YOUTU' )&& e[1]?.url)&&(
                           <ReactPlayer controls={true} url={e[1]?.url} width='100%' />
                         )}
                       </Collapse>
 
-                      : ''}
+                      :   
+                      <Collapse in={e[0] + 'tab' === openid} timeout="auto" unmountOnExit>
+                      {((e[1]?.category.toUpperCase() === 'VIDEO' || e[1].category.toUpperCase()==='YOUTUBE' || e[1].data.includes("youtu") )&& e[1]?.url)&&(
+                        <ReactPlayer controls={true} url={e[1]?.url} width='100%' />
+                      )}
+                    </Collapse>}
                   </span>
                 ))}
               </List>
