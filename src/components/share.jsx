@@ -19,11 +19,13 @@ function Share() {
     const navigate = useNavigate();
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
+    const[subLoading, SetSubLoading] = useState(false)
     const [title, setTitle] = useState(null);
     const [category , setCategory] = useState(null)
     const [catList, setCatList] = useState([])
     const [preview,setPreview] = useState({img:'',title:'',description:''})
     const addData = async () => {
+            SetSubLoading(true)
             const addNew = await addDoc(collection(db, "notepad"), {
                 data: `${title} ${data.text}`,
                 username: user, 
@@ -114,7 +116,7 @@ return (
                   {catList.map(i=><MenuItem key={i} value={i} className='text-capitalize'>{i}</MenuItem>)}
                 </Select>
                 <div className='d-flex justify-content-end'>
-                    <Button onClick={addData} variant="outlined">Save</Button>
+                    <Button onClick={addData} disabled={subLoading} variant="outlined">{subLoading?"Loading":"Save"}</Button>
                 </div>
               </Box>
               <div className="col-4 mx-auto">
