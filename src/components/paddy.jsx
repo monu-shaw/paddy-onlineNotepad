@@ -11,6 +11,8 @@ import Del, { Copy } from './deldata';
 import { setModal } from '../redux/reducers/users'
 import { useSwipeable } from 'react-swipeable';
 import ReactPlayer from 'react-player';
+import Share from './share';
+import { ShareButton } from './feature/shareButton';
 
 function Paddy({ network }) {
   const { addModal: addNew } = useSelector(i => i.user)
@@ -27,10 +29,10 @@ function Paddy({ network }) {
   const getAllNotes = async () => {
     const q = query(collection(db, "notepad"), where("username", "==", user), orderBy("createdOn", "desc"));
     const querySnapshot = await getDocs(q);
-    //console.log(querySnapshot.docs)
+    
     setUIloading(false)
     setNotes(querySnapshot.docs.map(e => [e.id, e.data()]))
-    //window.localStorage.setItem("offline", JSON.stringify(querySnapshot.docs.map(e => [e.id,e.data()])))
+    
 
   }
 
@@ -152,7 +154,7 @@ function Paddy({ network }) {
                             </Typography>
                             </CardContent>
                             <CardActions>
-                                  <Copy data={e[1].data} />
+                                  <ShareButton data={e[1]} />
                                   <Del id={e[0]} getAllNotes={getAllNotes} />
                               </CardActions>
                           </Card>

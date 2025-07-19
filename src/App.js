@@ -12,6 +12,7 @@ import Betatester from './components/betatesterform.jsx';
 import Share from './components/share.jsx';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
+import SearchPage from './components/search.jsx';
 
 function App() {
   const networkState = useNetwork();
@@ -31,6 +32,10 @@ function App() {
         <Route
           path="/share"
           element={<Share network={networkState.online} />}
+        />
+        <Route
+          path="/search"
+          element={<SearchPage network={networkState.online} />}
         />
         <Route
           path="/signup"

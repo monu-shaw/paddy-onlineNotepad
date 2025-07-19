@@ -10,6 +10,7 @@ import { logOut,setModal } from '../redux/reducers/users';
 import React, { useEffect, useState } from 'react';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import AddIcon from '@mui/icons-material/Add';
+import { SearchRounded } from '@mui/icons-material';
 
 export default function Navbar() {
   const logStatus = useSelector((state) => state.user.status);
@@ -38,6 +39,11 @@ export default function Navbar() {
             <Button color="inherit" onClick={() => dispatch(setModal())}>
               <AddIcon />
             </Button>
+            <Link to="/search" className="text-light text-decoration-none">
+            <Button color="inherit">
+              <SearchRounded />
+            </Button>
+            </Link>
           </ButtonGroup>
             
           ) : (
